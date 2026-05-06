@@ -1,0 +1,78 @@
+{
+  "id": "rloop",
+  "name": "RLoop",
+  "version": "1.0.0",
+  "description": "Task Monitor Plugin - Automatically monitor agent execution of long-running tasks",
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "stateDirectory": {
+        "type": "string",
+        "description": "Directory for STATE.json. Use 'workspace' for agent's workspace/state folder, or specify a path. Default: workspace",
+        "default": "workspace"
+      },
+      "stateFile": {
+        "type": "string",
+        "description": "State file name",
+        "default": "STATE.json"
+      },
+      "pollIntervalMs": {
+        "type": "number",
+        "description": "Polling interval in milliseconds",
+        "default": 5000,
+        "minimum": 1000
+      },
+      "enableAutoRetry": {
+        "type": "boolean",
+        "description": "Enable automatic retry on failure",
+        "default": true
+      },
+      "maxRetries": {
+        "type": "number",
+        "description": "Maximum retry attempts per task",
+        "default": 3,
+        "minimum": 0
+      },
+      "retryDelayMs": {
+        "type": "number",
+        "description": "Delay between retries in milliseconds",
+        "default": 30000,
+        "minimum": 1000
+      },
+      "onFailure": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["callback", "log", "none"],
+            "default": "log"
+          },
+          "callbackUrl": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "default": {
+          "type": "log"
+        }
+      },
+      "logLevel": {
+        "type": "string",
+        "enum": ["debug", "info", "warn", "error"],
+        "default": "info"
+      }
+    }
+  },
+  "contracts": {
+    "tools": [
+      "rloop_register_task",
+      "rloop_update_step",
+      "rloop_heartbeat",
+      "rloop_get_task",
+      "rloop_complete_task",
+      "rloop_fail_task",
+      "rloop_list_tasks",
+      "rloop_check_stalled"
+    ]
+  }
+}

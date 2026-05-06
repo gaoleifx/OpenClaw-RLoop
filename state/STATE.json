@@ -1,0 +1,359 @@
+{
+  "tasks": [
+    {
+      "id": "2b506621-dec5-4336-811c-1af14ce17952",
+      "taskName": "从知乎读20篇AI相关文章",
+      "status": "stalled",
+      "createdAt": "2026-05-06T10:52:46.152Z",
+      "lastUpdated": "2026-05-06T10:57:46.181Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "搜索知乎 AI 文章 第1批(5篇)",
+          "status": "running",
+          "updatedAt": null
+        },
+        {
+          "id": 2,
+          "desc": "搜索知乎 AI 文章 第2批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 3,
+          "desc": "搜索知乎 AI 文章 第3批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "搜索知乎 AI 文章 第4批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "汇总报告",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 5,
+        "completedSteps": 0
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-06T10:52:46.152Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "bfe081a9-3214-4762-ae8c-96ac5d2837d7",
+      "taskName": "Houdini SOP 全量节点 Ralph 循环学习",
+      "status": "stalled",
+      "createdAt": "2026-05-06T11:01:32.840Z",
+      "lastUpdated": "2026-05-06T11:06:33.819Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "读取 STATE.json 获取当前进度 (category_index + node_index)",
+          "status": "running",
+          "updatedAt": null
+        },
+        {
+          "id": 2,
+          "desc": "找下一个未完成节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 3,
+          "desc": "tavily_extract 抓取节点文档",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "解析文档内容",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "gm_record 写入 gbrain",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 6,
+          "desc": "更新 STATE.json (completed_nodes + 索引推进)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 7,
+          "desc": "rloop_update_step 标记本轮完成，检查是否全部完成",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 7,
+        "completedSteps": 0
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-06T11:01:32.840Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "ea801284-fa19-4588-91e2-909a32551344",
+      "taskName": "Houdini SOP 全量节点 Ralph 循环学习",
+      "status": "stalled",
+      "createdAt": "2026-05-06T11:04:01.959Z",
+      "lastUpdated": "2026-05-06T11:09:02.113Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "读取 STATE.json 获取当前进度 (category_index + node_index)",
+          "status": "running",
+          "updatedAt": null
+        },
+        {
+          "id": 2,
+          "desc": "找下一个未完成节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 3,
+          "desc": "tavily_extract 抓取节点文档",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "解析文档内容",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "gm_record 写入 gbrain",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 6,
+          "desc": "更新 STATE.json (completed_nodes + 索引推进)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 7,
+          "desc": "rloop_update_step 标记本轮完成，检查是否全部完成",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 7,
+        "completedSteps": 0
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-06T11:04:01.959Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "0b37f0ab-2966-470c-9e08-dd40c9b03d70",
+      "taskName": "从知乎读20篇AI相关文章",
+      "status": "stalled",
+      "createdAt": "2026-05-06T11:52:12.653Z",
+      "lastUpdated": "2026-05-06T12:03:33.231Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "搜索知乎 AI 文章 第1批(5篇)",
+          "status": "running",
+          "updatedAt": null
+        },
+        {
+          "id": 2,
+          "desc": "搜索知乎 AI 文章 第2批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 3,
+          "desc": "搜索知乎 AI 文章 第3批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "搜索知乎 AI 文章 第4批(5篇)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "汇总报告",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 5,
+        "completedSteps": 0
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-06T11:58:31.056Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "eafd02af-55c0-4efe-9b30-73e072ba1996",
+      "taskName": "Houdini SOP节点知识入库",
+      "status": "stalled",
+      "createdAt": "2026-05-06T13:38:18.617Z",
+      "lastUpdated": "2026-05-06T14:49:57.070Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "从Houdini帮助文档获取完整SOP节点列表",
+          "status": "completed",
+          "updatedAt": "2026-05-06T13:39:04.400Z"
+        },
+        {
+          "id": 2,
+          "desc": "抓取每个SOP节点的详情页面内容",
+          "status": "running",
+          "updatedAt": "2026-05-06T13:39:10.437Z"
+        },
+        {
+          "id": 3,
+          "desc": "将每个节点知识写入gbrain（houdini/sop/<节点名>）",
+          "status": "completed",
+          "updatedAt": "2026-05-06T14:49:57.070Z"
+        },
+        {
+          "id": 4,
+          "desc": "完成后输出总结报告",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 2,
+        "totalSteps": 4,
+        "completedSteps": 2
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 600000,
+        "lastHeartbeat": "2026-05-06T14:49:57.070Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "81946838-b940-4b42-93cc-f9a3b2734647",
+      "taskName": "OpenClaw 版本检查与更新通知",
+      "status": "completed",
+      "createdAt": "2026-05-06T14:21:41.712Z",
+      "lastUpdated": "2026-05-06T14:23:31.061Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "获取当前安装版本（openclaw --version）",
+          "status": "completed",
+          "updatedAt": "2026-05-06T14:21:49.524Z"
+        },
+        {
+          "id": 2,
+          "desc": "获取最新版本及 CHANGELOG（web_fetch GitHub/NPM）",
+          "status": "completed",
+          "updatedAt": "2026-05-06T14:22:47.375Z"
+        },
+        {
+          "id": 3,
+          "desc": "对比版本并提取更新要点",
+          "status": "completed",
+          "updatedAt": "2026-05-06T14:23:00.212Z"
+        },
+        {
+          "id": 4,
+          "desc": "推送详细更新卡片到飞书 DM（ou_4227d02832359a6731a4d8fa0f9929f1）",
+          "status": "completed",
+          "updatedAt": "2026-05-06T14:23:27.728Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 4,
+        "totalSteps": 4,
+        "completedSteps": 4
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-06T14:23:27.728Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    }
+  ],
+  "version": "1.0.0"
+}
