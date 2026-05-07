@@ -56,6 +56,27 @@
           "type": "log"
         }
       },
+      "stepReport": {
+        "type": "object",
+        "properties": {
+          "enabled": { "type": "boolean", "default": false },
+          "onComplete": { "type": "boolean", "default": true },
+          "onStart": { "type": "boolean", "default": false },
+          "onFailure": { "type": "boolean", "default": true },
+          "onStalled": { "type": "boolean", "default": true },
+          "notifyFeishu": { "type": "boolean", "default": false },
+          "feishuUserId": { "type": "string", "default": "" }
+        },
+        "default": {
+          "enabled": false,
+          "onComplete": true,
+          "onStart": false,
+          "onFailure": true,
+          "onStalled": true,
+          "notifyFeishu": false,
+          "feishuUserId": ""
+        }
+      },
       "logLevel": {
         "type": "string",
         "enum": ["debug", "info", "warn", "error"],

@@ -60,6 +60,17 @@ export interface State {
   version: string;
 }
 
+// Step report configuration
+export interface StepReportConfig {
+  enabled: boolean;
+  onComplete: boolean;  // Report when step completed
+  onStart: boolean;      // Report when step starts
+  onFailure: boolean;    // Report when step fails
+  onStalled: boolean;   // Report when task stalled
+  notifyFeishu: boolean;  // Send Feishu DM notification
+  feishuUserId: string;   // Feishu open_id to DM
+}
+
 // Plugin configuration
 export interface RalphLoopConfig {
   stateDirectory: string;
@@ -73,6 +84,7 @@ export interface RalphLoopConfig {
     type: 'callback' | 'log' | 'none';
     callbackUrl: string | null;
   };
+  stepReport: StepReportConfig;
   logLevel: 'debug' | 'info' | 'warn' | 'error';
 }
 
@@ -88,6 +100,15 @@ export const DEFAULT_CONFIG: RalphLoopConfig = {
   onFailure: {
     type: 'log',
     callbackUrl: null,
+  },
+  stepReport: {
+    enabled: false,
+    onComplete: true,
+    onStart: false,
+    onFailure: true,
+    onStalled: true,
+    notifyFeishu: false,
+    feishuUserId: '',
   },
   logLevel: 'info',
 };

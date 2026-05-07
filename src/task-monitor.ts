@@ -11,6 +11,28 @@ let monitorInterval: ReturnType<typeof setInterval> | null = null;
 let apiInstance: OpenClawPluginApi | null = null;
 let configInstance: RalphLoopConfig | null = null;
 
+/** Send stall report to callback URL */
+async function sendStallReport(taskId: string, taskName: string): Promise<void> {
+  if (!configInstance || !configInstance.stepReport.enabled || configInstance.onFailure.type !== 'callback' || !configInstance.onFailure.callbackUrl) {
+    return;
+  }
+  try {
+    await fetch(configInstance.onFailure.callbackUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        event: 'stalled',
+        taskId,
+        taskName,
+        timestamp: new Date().toISOString(),
+        message: `⚠️ 任务疑似卡住: ${taskName}`,
+      }),
+    });
+  } catch (err) {
+    console.warn('[rloop] Stall report callback failed:', err);
+  }
+}
+
 /**
  * Start the background monitor
  */
@@ -64,8 +86,14 @@ async function runStallCheck(): Promise<void> {
   try {
     const stalledIds = await checkAndMarkStalledTasks(configInstance);
 
-    if (stalledIds.length > 0 && shouldLog('warn', configInstance.logLevel)) {
-      console.warn(`[rloop] Detected ${stalledIds.length} stalled task(s): ${stalledIds.join(', ')}`);
+    if (stalledIds.length > 0) {
+      if (shouldLog('warn', configInstance.logLevel)) {
+        console.warn(`[rloop] Detected ${stalledIds.length} stalled task(s): ${stalledIds.join(', ')}`);
+      }
+      // Fire stall report callbacks
+      for (const id of stalledIds) {
+        sendStallReport(id, '').catch(() => {});
+      }
     }
   } catch (err) {
     if (configInstance && shouldLog('error', configInstance.logLevel)) {

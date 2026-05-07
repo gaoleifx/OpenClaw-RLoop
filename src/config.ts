@@ -19,6 +19,15 @@ export const ConfigSchema = z.object({
     type: z.enum(['callback', 'log', 'none']),
     callbackUrl: z.string().url().nullable(),
   }),
+  stepReport: z.object({
+    enabled: z.boolean(),
+    onComplete: z.boolean(),
+    onStart: z.boolean(),
+    onFailure: z.boolean(),
+    onStalled: z.boolean(),
+    notifyFeishu: z.boolean(),
+    feishuUserId: z.string(),
+  }),
   logLevel: z.enum(['debug', 'info', 'warn', 'error']),
 });
 
@@ -67,6 +76,16 @@ export function validateConfig(config: unknown): RalphLoopConfig {
   }
   if (configObj.logLevel && ['debug', 'info', 'warn', 'error'].includes(String(configObj.logLevel))) {
     withDefaults.logLevel = String(configObj.logLevel) as 'debug' | 'info' | 'warn' | 'error';
+  }
+  if (configObj.stepReport) {
+    const sr = configObj.stepReport as Record<string, unknown>;
+    if (typeof sr.enabled === 'boolean') withDefaults.stepReport.enabled = sr.enabled;
+    if (typeof sr.onComplete === 'boolean') withDefaults.stepReport.onComplete = sr.onComplete;
+    if (typeof sr.onStart === 'boolean') withDefaults.stepReport.onStart = sr.onStart;
+    if (typeof sr.onFailure === 'boolean') withDefaults.stepReport.onFailure = sr.onFailure;
+    if (typeof sr.onStalled === 'boolean') withDefaults.stepReport.onStalled = sr.onStalled;
+    if (typeof sr.notifyFeishu === 'boolean') withDefaults.stepReport.notifyFeishu = sr.notifyFeishu;
+    if (typeof sr.feishuUserId === 'string') withDefaults.stepReport.feishuUserId = sr.feishuUserId;
   }
 
   // Validate with Zod - if validation fails, return defaults

@@ -16,6 +16,112 @@ import {
   getTaskStats,
   getStalledTasks,
 } from './state-manager.js';
+import { getStateFilePath } from './config.js';
+
+// Lazily resolved Feishu client to avoid circular dependency during registration
+function getFeishuClient() {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { LarkClient } = require('openclaw-lark');
+    return LarkClient.get('default') ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function sendFeishuMarkdown(to: string, text: string): Promise<void> {
+  const client = getFeishuClient();
+  if (!client) {
+    console.warn('[rloop] Feishu client not available, skipping notification');
+    return Promise.resolve();
+  }
+  return import('openclaw-lark').then(({ sendMarkdownCardFeishu, buildMarkdownCard }) => {
+    return sendMarkdownCardFeishu({
+      cfg: client.account,
+      to,
+      text,
+    });
+  }).catch((err) => {
+    console.warn('[rloop] Failed to send Feishu notification:', err);
+  }) as Promise<void>;
+}
+
+interface ToolArgs {
+  taskName?: string;
+  taskId?: string;
+  stepId?: number;
+  status?: string;
+  steps?: Array<{ desc: string }>;
+  stallTimeoutMs?: number;
+  error?: string;
+  agentId?: string;
+  includeStalled?: boolean;
+}
+
+/** Format progress bar string */
+function formatProgress(task: { progress: { completedSteps: number; totalSteps: number }; steps: Array<{ desc: string }> }): string {
+  const done = task.progress.completedSteps;
+  const total = task.progress.totalSteps;
+  const pct = Math.round((done / total) * 100);
+  const barLen = 10;
+  const filled = Math.round((done / total) * barLen);
+  const bar = '█'.repeat(filled) + '░'.repeat(barLen - filled);
+  return `[${bar}] ${pct}%`;
+}
+
+/** Send a step report - supports both Feishu direct notification and HTTP callback */
+async function sendStepReport(
+  config: RalphLoopConfig,
+  api: OpenClawPluginApi,
+  event: { type: string; taskId: string; taskName: string; stepId: number; stepDesc: string; progress: { completedSteps: number; totalSteps: number } }
+): Promise<void> {
+  if (!config.stepReport.enabled) return;
+
+  const shouldSend =
+    (event.type === 'completed' && config.stepReport.onComplete) ||
+    (event.type === 'started' && config.stepReport.onStart) ||
+    (event.type === 'failed' && config.stepReport.onFailure);
+  if (!shouldSend) return;
+
+  const emoji: Record<string, string> = {
+    started: '🟡',
+    completed: '✅',
+    failed: '❌',
+  };
+  const label = emoji[event.type] ?? '📋';
+  const nextStep = event.type === 'completed' ? event.stepId + 1 : event.stepId;
+  const nextDesc = event.type === 'completed'
+    ? ''
+    : ` · 下一步：${event.stepDesc}`;
+  const text = `${label} **${event.taskName}**\n` +
+    `第 ${event.stepId}/${event.progress.totalSteps} 步 [${formatProgress({ progress: event.progress, steps: [] })}]\n` +
+    `进行中：${event.stepDesc}${nextDesc}`;
+
+  // 1) Direct Feishu DM to owner (via openclaw-lark)
+  if (config.stepReport.notifyFeishu && config.stepReport.feishuUserId) {
+    sendFeishuMarkdown(config.stepReport.feishuUserId, text).catch(() => {});
+  }
+
+  // 2) HTTP callback (for external integrations)
+  if (config.onFailure.type === 'callback' && config.onFailure.callbackUrl) {
+    const body = {
+      event: event.type,
+      taskId: event.taskId,
+      taskName: event.taskName,
+      stepId: event.stepId,
+      stepDesc: event.stepDesc,
+      progress: `${event.progress.completedSteps}/${event.progress.totalSteps}`,
+      progressBar: formatProgress({ progress: event.progress, steps: [] }),
+      timestamp: new Date().toISOString(),
+    };
+    const url = config.onFailure.callbackUrl.replace('/failure', '/step');
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }).catch((err) => console.warn('[rloop] Step report callback failed:', err));
+  }
+}
 
 interface ToolArgs {
   taskName?: string;
@@ -171,6 +277,21 @@ export function registerTools(api: OpenClawPluginApi, config: RalphLoopConfig): 
         // Reload to get updated task state
         const state = await loadState(config);
         const task = findTaskById(state, taskId);
+
+        // Fire step report notification if configured
+        if (task && config.stepReport.enabled) {
+          const step = task.steps.find((s) => s.id === stepId);
+          if (step) {
+            sendStepReport(config, api, {
+              type: status === 'completed' ? 'completed' : status === 'running' ? 'started' : 'failed',
+              taskId,
+              taskName: task.taskName,
+              stepId,
+              stepDesc: step.desc,
+              progress: task.progress,
+            }).catch(() => {});
+          }
+        }
 
         return successResult({
           success: true,
