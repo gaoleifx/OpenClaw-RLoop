@@ -1,0 +1,10 @@
+{
+  "569c15f9-b60a-435f-a2f1-0a5605ba227a": {
+    "enabled": true,
+    "activatedAt": 1778309425000,
+    "lastMessageAt": 1778317195000,
+    "silenceThresholdMs": 180000,
+    "feishuUserId": "ou_4227d02832359a6731a4d8fa0f9929f1",
+    "reminderCount": 5
+  }
+}

@@ -71,6 +71,18 @@ export interface StepReportConfig {
   feishuUserId: string;   // Feishu open_id to DM
 }
 
+// Session monitor config
+interface SessionMonitorConfig {
+  enabledByDefault: boolean;
+  triggerPhrases: string[];       // phrases to enable monitoring
+  deactivatePhrases: string[];    // phrases to disable monitoring
+  silenceThresholdMs: number;     // default 3 minutes = 180000ms
+  reminderText: string;           // reminder message to inject
+  maxRemindersPerSession: number; // stop reminding after N times
+  pollIntervalMs: number;         // polling interval in ms (default 60000)
+  feishuApiAppId: string;         // Feishu API app ID
+  feishuApiAppSecret: string;     // Feishu API app secret
+}
 // Plugin configuration
 export interface RalphLoopConfig {
   stateDirectory: string;
@@ -86,7 +98,21 @@ export interface RalphLoopConfig {
   };
   stepReport: StepReportConfig;
   logLevel: 'debug' | 'info' | 'warn' | 'error';
+  sessionMonitor: SessionMonitorConfig;
 }
+
+// Default session monitor config
+const DEFAULT_SESSION_MONITOR: SessionMonitorConfig = {
+  enabledByDefault: false,
+  triggerPhrases: ['开启监控', '/monitor', 'monitor on'],
+  deactivatePhrases: ['关闭监控', '/unmonitor', 'monitor off'],
+  silenceThresholdMs: 180_000,  // 3 minutes
+  reminderText: `\n\n⚠️ SESSION MONITOR REMINDER:\nDetected prolonged silence in this session.\nIf you have any task in progress, please do NOT pause — continue execution until completion.\nUse rloop_heartbeat to report progress, or rloop_update_step to advance.\nIf the task is blocked, report the blocker and await further instructions.`,
+  maxRemindersPerSession: 5,
+  pollIntervalMs: 60_000,  // poll every 60 seconds
+  feishuApiAppId: '',
+  feishuApiAppSecret: '',
+};
 
 // Default configuration
 export const DEFAULT_CONFIG: RalphLoopConfig = {
@@ -111,6 +137,7 @@ export const DEFAULT_CONFIG: RalphLoopConfig = {
     feishuUserId: '',
   },
   logLevel: 'info',
+  sessionMonitor: DEFAULT_SESSION_MONITOR,
 };
 
 // Agent lifecycle hook events
@@ -150,6 +177,20 @@ export interface StateChangeEvent {
 export interface FileLock {
   acquired: boolean;
   released: boolean;
+}
+
+// Session monitor state per session
+export interface SessionMonitorEntry {
+  enabled: boolean;
+  activatedAt: number;       // ms timestamp when monitoring was activated
+  lastMessageAt: number;      // ms timestamp of last user message
+  silenceThresholdMs: number; // silence threshold to trigger reminder
+  feishuUserId?: string;      // open_id for DM delivery
+  reminderCount?: number;    // number of reminders sent in this session
+}
+
+export interface SessionMonitorState {
+  [sessionId: string]: SessionMonitorEntry;
 }
 
 // Before prompt build hook event

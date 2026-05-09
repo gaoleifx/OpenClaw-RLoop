@@ -3,45 +3,45 @@
     {
       "id": "2b506621-dec5-4336-811c-1af14ce17952",
       "taskName": "从知乎读20篇AI相关文章",
-      "status": "stalled",
+      "status": "completed",
       "createdAt": "2026-05-06T10:52:46.152Z",
-      "lastUpdated": "2026-05-06T10:57:46.181Z",
+      "lastUpdated": "2026-05-09T06:26:47.284Z",
       "steps": [
         {
           "id": 1,
           "desc": "搜索知乎 AI 文章 第1批(5篇)",
-          "status": "running",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:47.284Z"
         },
         {
           "id": 2,
           "desc": "搜索知乎 AI 文章 第2批(5篇)",
-          "status": "pending",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:47.284Z"
         },
         {
           "id": 3,
           "desc": "搜索知乎 AI 文章 第3批(5篇)",
-          "status": "pending",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:47.284Z"
         },
         {
           "id": 4,
           "desc": "搜索知乎 AI 文章 第4批(5篇)",
-          "status": "pending",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:47.284Z"
         },
         {
           "id": 5,
           "desc": "汇总报告",
-          "status": "pending",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:47.284Z"
         }
       ],
       "progress": {
-        "currentStep": 1,
+        "currentStep": 5,
         "totalSteps": 5,
-        "completedSteps": 0
+        "completedSteps": 5
       },
       "stallDetection": {
         "enabled": true,
@@ -52,7 +52,7 @@
         "agentId": "unknown",
         "retryCount": 0,
         "maxRetries": 3,
-        "errorDetails": null,
+        "errorDetails": "用户清理，任务过旧",
         "callbackUrl": null,
         "metadata": {}
       }
@@ -60,9 +60,9 @@
     {
       "id": "bfe081a9-3214-4762-ae8c-96ac5d2837d7",
       "taskName": "Houdini SOP 全量节点 Ralph 循环学习",
-      "status": "stalled",
+      "status": "failed",
       "createdAt": "2026-05-06T11:01:32.840Z",
-      "lastUpdated": "2026-05-06T11:06:33.819Z",
+      "lastUpdated": "2026-05-08T02:49:46.307Z",
       "steps": [
         {
           "id": 1,
@@ -121,7 +121,7 @@
         "agentId": "unknown",
         "retryCount": 0,
         "maxRetries": 3,
-        "errorDetails": null,
+        "errorDetails": "用户清理，任务过旧",
         "callbackUrl": null,
         "metadata": {}
       }
@@ -129,9 +129,9 @@
     {
       "id": "ea801284-fa19-4588-91e2-909a32551344",
       "taskName": "Houdini SOP 全量节点 Ralph 循环学习",
-      "status": "stalled",
+      "status": "failed",
       "createdAt": "2026-05-06T11:04:01.959Z",
-      "lastUpdated": "2026-05-06T11:09:02.113Z",
+      "lastUpdated": "2026-05-08T02:49:48.850Z",
       "steps": [
         {
           "id": 1,
@@ -190,7 +190,7 @@
         "agentId": "unknown",
         "retryCount": 0,
         "maxRetries": 3,
-        "errorDetails": null,
+        "errorDetails": "用户清理，任务过旧",
         "callbackUrl": null,
         "metadata": {}
       }
@@ -198,9 +198,9 @@
     {
       "id": "0b37f0ab-2966-470c-9e08-dd40c9b03d70",
       "taskName": "从知乎读20篇AI相关文章",
-      "status": "stalled",
+      "status": "failed",
       "createdAt": "2026-05-06T11:52:12.653Z",
-      "lastUpdated": "2026-05-06T12:03:33.231Z",
+      "lastUpdated": "2026-05-08T02:49:52.241Z",
       "steps": [
         {
           "id": 1,
@@ -247,7 +247,7 @@
         "agentId": "unknown",
         "retryCount": 0,
         "maxRetries": 3,
-        "errorDetails": null,
+        "errorDetails": "用户清理，任务过旧",
         "callbackUrl": null,
         "metadata": {}
       }
@@ -255,9 +255,9 @@
     {
       "id": "eafd02af-55c0-4efe-9b30-73e072ba1996",
       "taskName": "Houdini SOP节点知识入库",
-      "status": "stalled",
+      "status": "completed",
       "createdAt": "2026-05-06T13:38:18.617Z",
-      "lastUpdated": "2026-05-06T14:49:57.070Z",
+      "lastUpdated": "2026-05-07T00:40:23.288Z",
       "steps": [
         {
           "id": 1,
@@ -268,8 +268,8 @@
         {
           "id": 2,
           "desc": "抓取每个SOP节点的详情页面内容",
-          "status": "running",
-          "updatedAt": "2026-05-06T13:39:10.437Z"
+          "status": "completed",
+          "updatedAt": "2026-05-06T16:02:58.591Z"
         },
         {
           "id": 3,
@@ -280,19 +280,19 @@
         {
           "id": 4,
           "desc": "完成后输出总结报告",
-          "status": "pending",
-          "updatedAt": null
+          "status": "completed",
+          "updatedAt": "2026-05-07T00:40:17.426Z"
         }
       ],
       "progress": {
-        "currentStep": 2,
+        "currentStep": 4,
         "totalSteps": 4,
-        "completedSteps": 2
+        "completedSteps": 4
       },
       "stallDetection": {
         "enabled": true,
         "stallTimeoutMs": 600000,
-        "lastHeartbeat": "2026-05-06T14:49:57.070Z"
+        "lastHeartbeat": "2026-05-07T00:40:17.426Z"
       },
       "data": {
         "agentId": "unknown",
@@ -344,6 +344,639 @@
         "enabled": true,
         "stallTimeoutMs": 300000,
         "lastHeartbeat": "2026-05-06T14:23:27.728Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "9035b533-fd7f-43de-935e-b07b22585574",
+      "taskName": "Houdini SOP节点系统学习",
+      "status": "failed",
+      "createdAt": "2026-05-07T01:47:16.832Z",
+      "lastUpdated": "2026-05-08T02:49:54.553Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "创建节点分类体系和笔记文件",
+          "status": "completed",
+          "updatedAt": "2026-05-07T01:49:49.660Z"
+        },
+        {
+          "id": 2,
+          "desc": "几何基础创建类（Sphere/Box/Cylinder等）",
+          "status": "running",
+          "updatedAt": "2026-05-07T01:50:12.602Z"
+        },
+        {
+          "id": 3,
+          "desc": "几何修改类（Transform/Group/Attribute等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "几何清理与优化类（Clean/PolyReduce/Remesh等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "曲线与Spline类（Curve/Fit/Sweep等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 6,
+          "desc": "布尔与集合运算类（Boolean/Fracture等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 7,
+          "desc": "复制与实例类（Copy/Instance/Scatter等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 8,
+          "desc": "UV与纹理类（UV Project/Texture等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 9,
+          "desc": "动画与解算类（Solver/Trail/TimeShift等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 10,
+          "desc": "毛发与羽毛类（Groom/Fiber/Feather等）",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 11,
+          "desc": "VDB体积类节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 12,
+          "desc": "FLIP/Pyro流体类节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 13,
+          "desc": "RBD/Vellum刚体柔体类节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 14,
+          "desc": "角色绑定与KineFX类节点",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 15,
+          "desc": "输出总结：节点地图+高频节点速查表",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 2,
+        "totalSteps": 15,
+        "completedSteps": 1
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-07T01:50:12.602Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": "用户清理，任务过旧",
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "60bb48c8-8a41-4469-afa9-008a3fdcf1f4",
+      "taskName": "Houdini SOP节点学习 - 重点优先100核",
+      "status": "completed",
+      "createdAt": "2026-05-07T03:28:43.652Z",
+      "lastUpdated": "2026-05-07T04:11:09.958Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "几何基础创建: Box|Sphere|Torus|Grid|Circle|Curve|Tube",
+          "status": "completed",
+          "updatedAt": "2026-05-07T03:42:29.777Z"
+        },
+        {
+          "id": 2,
+          "desc": "属性操作三件套: AttribCreate|AttribCopy|AttribDelete|AttribRename|AttribPromote|AttributeExpression",
+          "status": "failed",
+          "updatedAt": "2026-05-07T03:43:55.413Z"
+        },
+        {
+          "id": 3,
+          "desc": "几何修改核心: Transform|Merge|Fuse|Group|Blast|Delete|GroupExpression",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 4,
+          "desc": "建模高频节点: Extrude|Sweep|Bevel|Smooth|Remesh|PolyReduce|Subdivide",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 5,
+          "desc": "布尔切割体系: Boolean|BooleanFracture|VoronoiFracture|PolyCut|EdgeDivide",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 6,
+          "desc": "Copy/Instance体系: CopyToPoints|CopyandTransform|Instance|Scatter|Follow",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 7,
+          "desc": "UV/材质/颜色: UVFlatten|UVProject|UVQuickExtend|Material|Color|Shader",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 8,
+          "desc": "VDB体积/工具节点: VDBFromPolygons|ConvertVDB|VolumeMerge|Null|Switch|TimeShift|Cache",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 9,
+          "desc": "KineFX/毛发/群集: Skeleton|BoneDeform|SkeletonBlend|IK|Agent|AgentUnpack|FiberGroom|HairGen",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:50.462Z"
+        },
+        {
+          "id": 10,
+          "desc": "地形/流体/海洋/特效: HeightField|HeightFieldLayer|Erode|FLIPSolver|PyroSolver|OceanSurface|FileCache",
+          "status": "completed",
+          "updatedAt": "2026-05-07T04:04:46.171Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 10,
+        "totalSteps": 10,
+        "completedSteps": 10
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-07T04:04:52.549Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "bf7aef59-dbad-4951-aa47-4b6f18811ccd",
+      "taskName": "Houdini SOP 多子会话+多线程并发测试",
+      "status": "completed",
+      "createdAt": "2026-05-07T06:44:03.006Z",
+      "lastUpdated": "2026-05-07T07:14:44.413Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "并行启动3个子会话各抓取20个节点（8线程并发）",
+          "status": "completed",
+          "updatedAt": "2026-05-07T06:51:11.553Z"
+        },
+        {
+          "id": 2,
+          "desc": "收集各子会话汇报，汇总结果",
+          "status": "completed",
+          "updatedAt": "2026-05-07T07:14:24.394Z"
+        },
+        {
+          "id": 3,
+          "desc": "输出验证：对比计划vs实际文件，报告缺失",
+          "status": "completed",
+          "updatedAt": "2026-05-07T07:14:44.413Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 3,
+        "completedSteps": 3
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-07T07:14:44.413Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "4f09bd2c-4cab-4ff3-9cee-455b8eee37be",
+      "taskName": "Houdini SOP全量节点抓取（1170节点）",
+      "status": "completed",
+      "createdAt": "2026-05-07T07:51:19.090Z",
+      "lastUpdated": "2026-05-07T13:24:38.944Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "批次1：a-g 字母节点（~328个）",
+          "status": "completed",
+          "updatedAt": "2026-05-07T13:09:16.624Z"
+        },
+        {
+          "id": 2,
+          "desc": "批次2：h-n 字母节点（~449个）",
+          "status": "completed",
+          "updatedAt": "2026-05-07T13:09:16.624Z"
+        },
+        {
+          "id": 3,
+          "desc": "批次3：o-u 字母节点（~269个）",
+          "status": "completed",
+          "updatedAt": "2026-05-07T13:09:16.624Z"
+        },
+        {
+          "id": 4,
+          "desc": "批次4：v-z 字母节点（~124个）",
+          "status": "completed",
+          "updatedAt": "2026-05-07T13:09:16.624Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 4,
+        "totalSteps": 4,
+        "completedSteps": 4
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 600000,
+        "lastHeartbeat": "2026-05-07T13:24:38.944Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "c795c44c-6c72-48e9-91e8-8e96585eb6a3",
+      "taskName": "Houdini 50 SOP 节点学习",
+      "status": "failed",
+      "createdAt": "2026-05-07T09:04:14.829Z",
+      "lastUpdated": "2026-05-08T02:49:57.752Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "派发子 agent 并行抓取 50 个 SOP 节点文档",
+          "status": "completed",
+          "updatedAt": "2026-05-07T09:05:27.648Z"
+        },
+        {
+          "id": 2,
+          "desc": "为每个节点生成 markdown 文件到 D:\\AI\\GBrain-memory\\org",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 3,
+          "desc": "用 gbrain import 批量导入到知识库",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 1,
+        "totalSteps": 3,
+        "completedSteps": 1
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 300000,
+        "lastHeartbeat": "2026-05-07T09:05:27.648Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": "用户清理，任务过旧",
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "2f8102c9-fb3a-4ae3-b738-bc8cde5b864a",
+      "taskName": "Houdini SOP 节点 gbrain import",
+      "status": "completed",
+      "createdAt": "2026-05-07T13:55:17.697Z",
+      "lastUpdated": "2026-05-09T06:26:55.446Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "清理 bun/node 进程，解除 PGLite 锁",
+          "status": "completed",
+          "updatedAt": "2026-05-07T13:55:35.831Z"
+        },
+        {
+          "id": 2,
+          "desc": "并行启动 5 个子 Agent，每个处理 10-11 个文件的 gbrain put",
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:55.446Z"
+        },
+        {
+          "id": 3,
+          "desc": "汇总结果，确认 import 成功",
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:55.446Z"
+        },
+        {
+          "id": 4,
+          "desc": "验证 gbrain query 能搜到 Houdini SOP 节点",
+          "status": "completed",
+          "updatedAt": "2026-05-09T06:26:55.446Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 4,
+        "totalSteps": 4,
+        "completedSteps": 4
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 600000,
+        "lastHeartbeat": "2026-05-07T13:55:35.831Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": "用户清理，任务过旧",
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "17366035-f290-4b1c-bcca-77127b3dc4cf",
+      "taskName": "自选股下午扫描 2026-05-08 14:00",
+      "status": "completed",
+      "createdAt": "2026-05-08T06:03:34.142Z",
+      "lastUpdated": "2026-05-08T06:05:42.506Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "获取实时行情（东方财富）",
+          "status": "completed",
+          "updatedAt": "2026-05-08T06:04:03.856Z"
+        },
+        {
+          "id": 2,
+          "desc": "查询本地 stocks.db 历史数据",
+          "status": "completed",
+          "updatedAt": "2026-05-08T06:05:42.506Z"
+        },
+        {
+          "id": 3,
+          "desc": "逐股量价诊断 + 评级",
+          "status": "completed",
+          "updatedAt": "2026-05-08T06:05:09.701Z"
+        },
+        {
+          "id": 4,
+          "desc": "汇总持仓建议",
+          "status": "completed",
+          "updatedAt": "2026-05-08T06:05:42.506Z"
+        },
+        {
+          "id": 5,
+          "desc": "推送飞书群 oc_641d92edab0bd5252bdbcfb78b2e8419",
+          "status": "completed",
+          "updatedAt": "2026-05-08T06:05:34.238Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 5,
+        "totalSteps": 5,
+        "completedSteps": 5
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 120000,
+        "lastHeartbeat": "2026-05-08T06:05:34.238Z"
+      },
+      "data": {
+        "agentId": "main",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "7fe7e26e-ba92-485e-92c6-bbd3f7998b8e",
+      "taskName": "VEX函数文档全集抓取",
+      "status": "stalled",
+      "createdAt": "2026-05-08T16:30:57.414Z",
+      "lastUpdated": "2026-05-08T16:41:14.234Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "建输出目录 nodes/vex/",
+          "status": "completed",
+          "updatedAt": "2026-05-08T16:31:10.112Z"
+        },
+        {
+          "id": 2,
+          "desc": "读取并按 category 分 10 批",
+          "status": "running",
+          "updatedAt": "2026-05-08T16:31:13.721Z"
+        },
+        {
+          "id": 3,
+          "desc": "Batch 1: Arrays ~ Channel Primitives (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 4,
+          "desc": "Batch 2: Color ~ Geometry Intersect (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 5,
+          "desc": "Batch 3: Light ~ OpenGL (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 6,
+          "desc": "Batch 4: Operations ~ Rendering (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 7,
+          "desc": "Batch 5: Strings ~ Volumes (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 8,
+          "desc": "Batch 6: Vectors ~ Wiring (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 9,
+          "desc": "Batch 7: XML ~ Other (~110 functions)",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 10,
+          "desc": "验证输出：对比 1083 计划 vs 实际文件数",
+          "status": "pending",
+          "updatedAt": null
+        },
+        {
+          "id": 11,
+          "desc": "生成 index.md 导航页",
+          "status": "pending",
+          "updatedAt": null
+        }
+      ],
+      "progress": {
+        "currentStep": 2,
+        "totalSteps": 11,
+        "completedSteps": 1
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 600000,
+        "lastHeartbeat": "2026-05-08T16:31:13.721Z"
+      },
+      "data": {
+        "agentId": "unknown",
+        "retryCount": 0,
+        "maxRetries": 3,
+        "errorDetails": null,
+        "callbackUrl": null,
+        "metadata": {}
+      }
+    },
+    {
+      "id": "cd4bfa84-d6e6-436d-9088-b82fcc994d9a",
+      "taskName": "VEX函数文档全集抓取 - 恢复",
+      "status": "completed",
+      "createdAt": "2026-05-09T00:49:29.286Z",
+      "lastUpdated": "2026-05-09T01:00:29.811Z",
+      "steps": [
+        {
+          "id": 1,
+          "desc": "分析现有 stub 文件，提取 URL 列表",
+          "status": "completed",
+          "updatedAt": "2026-05-09T00:53:50.502Z"
+        },
+        {
+          "id": 2,
+          "desc": "Batch 1: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 3,
+          "desc": "Batch 2: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 4,
+          "desc": "Batch 3: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 5,
+          "desc": "Batch 4: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 6,
+          "desc": "Batch 5: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 7,
+          "desc": "Batch 6: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 8,
+          "desc": "Batch 7: ~155 functions 并发抓取",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 9,
+          "desc": "验证输出：对比 1083 计划 vs 实际文件数",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:29.811Z"
+        },
+        {
+          "id": 10,
+          "desc": "生成 index.md 导航页",
+          "status": "completed",
+          "updatedAt": "2026-05-09T01:00:27.193Z"
+        }
+      ],
+      "progress": {
+        "currentStep": 10,
+        "totalSteps": 10,
+        "completedSteps": 10
+      },
+      "stallDetection": {
+        "enabled": true,
+        "stallTimeoutMs": 600000,
+        "lastHeartbeat": "2026-05-09T01:00:27.193Z"
       },
       "data": {
         "agentId": "unknown",

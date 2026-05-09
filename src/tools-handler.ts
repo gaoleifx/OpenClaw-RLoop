@@ -22,7 +22,7 @@ import { getStateFilePath } from './config.js';
 function getFeishuClient() {
   try {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { LarkClient } = require('openclaw-lark');
+    const { LarkClient } = require('@larksuite/openclaw-lark');
     return LarkClient.get('default') ?? null;
   } catch {
     return null;
@@ -35,8 +35,12 @@ function sendFeishuMarkdown(to: string, text: string): Promise<void> {
     console.warn('[rloop] Feishu client not available, skipping notification');
     return Promise.resolve();
   }
-  return import('openclaw-lark').then(({ sendMarkdownCardFeishu, buildMarkdownCard }) => {
-    return sendMarkdownCardFeishu({
+  return import('@larksuite/openclaw-lark').then(({ sendMessageFeishu }) => {
+    if (!sendMessageFeishu) {
+      console.warn('[rloop] sendMessageFeishu not exported from @larksuite/openclaw-lark, skipping notification');
+      return Promise.resolve();
+    }
+    return sendMessageFeishu({
       cfg: client.account,
       to,
       text,

@@ -5,7 +5,7 @@
 import { readFile, writeFile, mkdir, access, constants } from 'fs/promises';
 import { dirname, join } from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import type { State, Task, TaskStatus, Step, StepStatus, RalphLoopConfig } from './types.js';
+import type { State, Task, TaskStatus, Step, StepStatus, RalphLoopConfig, SessionMonitorState } from './types.js';
 import { shouldLog } from './config.js';
 
 const STATE_VERSION = '1.0.0';
@@ -479,3 +479,174 @@ export function getTasksByStatus(state: State, status: TaskStatus): Task[] {
 export function getStalledTasks(state: State): Task[] {
   return state.tasks.filter((t) => t.status === 'stalled');
 }
+
+// ============================================================
+// Session Monitor State (per-session monitoring)
+// ============================================================
+
+const MONITOR_STATE_FILE = 'session-monitor.json';
+
+/**
+ * Get the full path to the session monitor state file
+ */
+export function getMonitorStateFilePath(config: RalphLoopConfig): string {
+  return join(config.stateDirectory, MONITOR_STATE_FILE);
+}
+
+/**
+ * Create empty monitor state
+ */
+export function createEmptyMonitorState(): SessionMonitorState {
+  return {};
+}
+
+/**
+ * Load session monitor state from file
+ */
+export async function loadMonitorState(config: RalphLoopConfig): Promise<SessionMonitorState> {
+  const release = await acquireLock(getMonitorStateFilePath(config));
+
+  try {
+    await ensureDirectory(config);
+    const filePath = getMonitorStateFilePath(config);
+
+    try {
+      const content = await readFile(filePath, 'utf-8');
+      const state = JSON.parse(content) as SessionMonitorState;
+      return state;
+    } catch {
+      return createEmptyMonitorState();
+    }
+  } finally {
+    await release();
+  }
+}
+
+/**
+ * Save session monitor state to file
+ */
+export async function saveMonitorState(config: RalphLoopConfig, state: SessionMonitorState): Promise<void> {
+  const release = await acquireLock(getMonitorStateFilePath(config));
+
+  try {
+    await ensureDirectory(config);
+    const filePath = getMonitorStateFilePath(config);
+    const content = JSON.stringify(state, null, 2);
+    await writeFile(filePath, content, 'utf-8');
+  } finally {
+    await release();
+  }
+}
+
+/**
+ * Enable session monitoring for a given session
+ */
+export async function enableSessionMonitor(
+  config: RalphLoopConfig,
+  sessionId: string,
+  silenceThresholdMs?: number,
+  feishuUserId?: string
+): Promise<void> {
+  const state = await loadMonitorState(config);
+  const now = Date.now();
+
+  state[sessionId] = {
+    enabled: true,
+    activatedAt: now,
+    lastMessageAt: now,
+    silenceThresholdMs: silenceThresholdMs ?? config.sessionMonitor.silenceThresholdMs,
+    feishuUserId: feishuUserId ?? state[sessionId]?.feishuUserId,
+    reminderCount: state[sessionId]?.reminderCount ?? 0,
+  };
+
+  await saveMonitorState(config, state);
+
+  if (shouldLog('info', config.logLevel)) {
+    console.info(`[rloop] Session monitor enabled for session: ${sessionId} (user: ${feishuUserId ?? 'unknown'})`);
+  }
+}
+
+/**
+ * Disable session monitoring for a given session
+ */
+export async function disableSessionMonitor(
+  config: RalphLoopConfig,
+  sessionId: string
+): Promise<void> {
+  const state = await loadMonitorState(config);
+
+  if (state[sessionId]) {
+    state[sessionId].enabled = false;
+    await saveMonitorState(config, state);
+
+    if (shouldLog('info', config.logLevel)) {
+      console.info(`[rloop] Session monitor disabled for session: ${sessionId}`);
+    }
+  }
+}
+
+/**
+ * Update last message timestamp for a session
+ */
+export async function updateSessionLastMessage(
+  config: RalphLoopConfig,
+  sessionId: string
+): Promise<void> {
+  const state = await loadMonitorState(config);
+
+  if (state[sessionId] && state[sessionId].enabled) {
+    state[sessionId].lastMessageAt = Date.now();
+    // Reset reminder count when user sends a new message
+    state[sessionId].reminderCount = 0;
+    await saveMonitorState(config, state);
+  }
+}
+
+/**
+ * Get session monitoring status
+ */
+export async function getSessionMonitorStatus(
+  config: RalphLoopConfig,
+  sessionId: string
+): Promise<{ enabled: boolean; silentForMs: number; thresholdMs: number } | null> {
+  const state = await loadMonitorState(config);
+  const entry = state[sessionId];
+
+  if (!entry || !entry.enabled) {
+    return null;
+  }
+
+  const silentForMs = Date.now() - entry.lastMessageAt;
+  return {
+    enabled: true,
+    silentForMs,
+    thresholdMs: entry.silenceThresholdMs,
+  };
+}
+
+/**
+ * Check if monitoring should trigger reminder for a session
+ */
+export async function shouldTriggerReminder(
+  config: RalphLoopConfig,
+  sessionId: string
+): Promise<boolean> {
+  const status = await getSessionMonitorStatus(config, sessionId);
+
+  if (!status || !status.enabled) {
+    return false;
+  }
+
+  return status.silentForMs >= status.thresholdMs;
+}
+
+/**
+ * Get all sessions currently being monitored
+ */
+export async function getMonitoredSessions(
+  config: RalphLoopConfig
+): Promise<string[]> {
+  const state = await loadMonitorState(config);
+  return Object.keys(state).filter((sid) => state[sid].enabled);
+}
+

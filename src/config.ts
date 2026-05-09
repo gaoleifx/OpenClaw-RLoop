@@ -29,6 +29,17 @@ export const ConfigSchema = z.object({
     feishuUserId: z.string(),
   }),
   logLevel: z.enum(['debug', 'info', 'warn', 'error']),
+  sessionMonitor: z.object({
+    enabledByDefault: z.boolean(),
+    triggerPhrases: z.array(z.string()),
+    deactivatePhrases: z.array(z.string()),
+    silenceThresholdMs: z.number(),
+    reminderText: z.string(),
+    maxRemindersPerSession: z.number(),
+    pollIntervalMs: z.number(),
+    feishuApiAppId: z.string(),
+    feishuApiAppSecret: z.string(),
+  }),
 });
 
 /**
@@ -86,6 +97,17 @@ export function validateConfig(config: unknown): RalphLoopConfig {
     if (typeof sr.onStalled === 'boolean') withDefaults.stepReport.onStalled = sr.onStalled;
     if (typeof sr.notifyFeishu === 'boolean') withDefaults.stepReport.notifyFeishu = sr.notifyFeishu;
     if (typeof sr.feishuUserId === 'string') withDefaults.stepReport.feishuUserId = sr.feishuUserId;
+  }
+  if (configObj.sessionMonitor) {
+    const sm = configObj.sessionMonitor as Record<string, unknown>;
+    if (Array.isArray(sm.triggerPhrases)) withDefaults.sessionMonitor.triggerPhrases = sm.triggerPhrases.map(String);
+    if (Array.isArray(sm.deactivatePhrases)) withDefaults.sessionMonitor.deactivatePhrases = sm.deactivatePhrases.map(String);
+    if (typeof sm.silenceThresholdMs === 'number') withDefaults.sessionMonitor.silenceThresholdMs = sm.silenceThresholdMs;
+    if (typeof sm.reminderText === 'string') withDefaults.sessionMonitor.reminderText = sm.reminderText;
+    if (typeof sm.maxRemindersPerSession === 'number') withDefaults.sessionMonitor.maxRemindersPerSession = sm.maxRemindersPerSession;
+    if (typeof sm.pollIntervalMs === 'number') withDefaults.sessionMonitor.pollIntervalMs = sm.pollIntervalMs;
+    if (typeof sm.feishuApiAppId === 'string') withDefaults.sessionMonitor.feishuApiAppId = sm.feishuApiAppId;
+    if (typeof sm.feishuApiAppSecret === 'string') withDefaults.sessionMonitor.feishuApiAppSecret = sm.feishuApiAppSecret;
   }
 
   // Validate with Zod - if validation fails, return defaults
